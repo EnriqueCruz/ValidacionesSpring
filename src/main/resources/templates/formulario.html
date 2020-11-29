@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form th:action="@{/form}" method="POST">
+    	<div>
+    		<label for="nombreUsuario"></label>
+    		<div>	
+    			<input type="text" name="nombreUsuario" id="nombreUsuario">
+    		</div>		
+    	</div>
+    	<div>
+    		<label for="password">Contrase&ñacute;a</label>
+    		<div>
+    			<input type="password" name="password" id="password">
+    		</div>	
+    	</div>
+    	<input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
