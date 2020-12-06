@@ -6,20 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <form th:action="@{/form}" method="POST">
+    <form th:action="@{/sendInformation}" method="POST">
     	<div>
-    		<label for="nombreUsuario"></label>
+    		<label for="userName">User Name</label>
     		<div>	
-    			<input type="text" name="nombreUsuario" id="nombreUsuario">
+    			<input type="text" name="userName" id="userName">
     		</div>		
     	</div>
     	<div>
-    		<label for="password">Contrase&ñacute;a</label>
+    		<label for="email">Email</label>
+    		<div>
+    			<input type="text" name="email" id="email">
+    		</div>	
+    	</div>
+    	<div>
+    		<label for="password">Contrase&ntilde;a</label>
     		<div>
     			<input type="password" name="password" id="password">
     		</div>	
     	</div>
-    	<input type="submit" value="Enviar">
+    	<input type="submit" value="Submit">
     </form>
 </body>
 </html>
