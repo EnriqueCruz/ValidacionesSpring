@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,7 @@ public class FormController {
 	@RequestMapping(value="/formUser", method = RequestMethod.GET)
 	public String form(Model model) {
 		model.addAttribute("title", "Form user");
+		model.addAttribute("user", new User());
 		return "form";
 	}
 	
@@ -29,7 +31,7 @@ public class FormController {
 	 * the form.html attributes will be mapped to the entitity´s fields
 	 * (always when the form attributes are the same name than User class)*/
 	@RequestMapping(value="/sendInformation", method = RequestMethod.POST)
-	public String process(@Valid User user, BindingResult bindingResult, Model model) {
+	public String process(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
 		// the BindingResult object, is useful to validate if entity object has all their attributes well formed or has an error in any field 
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errors = new HashMap<String,String>();
