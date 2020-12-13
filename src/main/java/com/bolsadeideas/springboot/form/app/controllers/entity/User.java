@@ -1,9 +1,15 @@
 package com.bolsadeideas.springboot.form.app.controllers.entity;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class User {
 	
+	@NotEmpty
 	private String userName;
+	@Email
 	private String email;
+	@NotEmpty
 	private String password;
 	
 	public User() {}

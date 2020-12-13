@@ -1,7 +1,13 @@
 package com.bolsadeideas.springboot.form.app.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,9 +27,18 @@ public class FormController {
 	
 	/* If Entity object is the first parameter in the controller´s method, then 
 	 * the form.html attributes will be mapped to the entitity´s fields
-	 * (always when the form attributes are the same than User class)*/
+	 * (always when the form attributes are the same name than User class)*/
 	@RequestMapping(value="/sendInformation", method = RequestMethod.POST)
-	public String process(User user, Model model) {
+	public String process(@Valid User user, BindingResult bindingResult, Model model) {
+		// the BindingResult object, is useful to validate if entity object has all their attributes well formed or has an error in any field 
+		if(bindingResult.hasErrors()) {
+			Map<String, String> errors = new HashMap<String,String>();
+			bindingResult.getFieldErrors().forEach(err -> {
+				errors.put(err.getField(), "El campo".concat(err.getField().concat(" , tiene errores")));
+			});
+			model.addAttribute("errors", errors);
+			return "form";
+		}
 		model.addAttribute("title", "User information");
 		model.addAttribute("user", user);
 		return "infoUser";	
